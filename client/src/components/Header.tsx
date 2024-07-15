@@ -146,7 +146,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
             onMouseEnter={handleNotificationIconMouseEnter}
             className="mr-[10px]"
           >
-            <NotificationIcon className="text-white h-10 size-[24px]" />
+            <NotificationIcon className="text-white size-[24px]" />
           </button>
         )}
         {profileBoxVisible ? (
@@ -161,7 +161,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
             onMouseEnter={handleProfileBoxMouseEnter}
             className="mr-[10px]"
           >
-            <ProfileIcon className="text-white h-10 size-[24px]" />
+            <ProfileIcon className="text-white size-[24px]" />
           </button>
         )}
       </div>

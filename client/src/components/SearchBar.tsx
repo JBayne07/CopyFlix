@@ -28,8 +28,8 @@ export const SearchBar = () => {
       <input
         type="text"
         placeholder="Titles, people, genres"
-        className={`bg-black outline-none caret-white text-sm transition-all duration-[600ms] ease-in-out ${
-          searchBarVisible ? "w-[20vw]" : "w-0"
+        className={`bg-black outline-none caret-white text-sm transition-all  ease-in-out ${
+          searchBarVisible ? "w-[20vw] duration-500" : "w-0 duration-0"
         }`}
         onBlur={handleSearchIconClick}
         ref={searchBarRef}
