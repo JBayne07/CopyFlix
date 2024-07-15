@@ -5,7 +5,6 @@ import { SearchBar } from "./SearchBar";
 import { useEffect, useRef, useState } from "react";
 import { NotificationBox } from "./NotificationBox";
 import { ProfileBox } from "./ProfileBox";
-import { SearchIcon } from "../assets/SearchIcon";
 import NetflixIcon from "../assets/Netflix_Logo_RGB.png";
 
 interface HeaderProps {
@@ -87,7 +86,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
         (isHeaderTransparent ? "" : " bg-black")
       }
     >
-      <div className="flex items-center ">
+      <div className="flex items-center mr-[10px]">
         <Link
           to="/"
           className="text-red-600 font-bold self-center text-3xl mr-[25px]"
@@ -133,26 +132,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
       </div>
 
       <div className="flex items-center">
-        {/* <SearchBar
-          handleSearchIconClick={handleSearchIconClick}
-          searchBarVisible={searchBarVisible}
-          ref={searchBarRef}
-        /> */}
         <SearchBar />
-        {/* <button onClick={handleSearchIconClick} className="mr-[10px]">
-          <SearchIcon className="text-white h-10 size-[24px]" />
-        </button> */}
-
-        {/* {searchBarVisible ? (
-          <SearchBar
-            handleSearchIconClick={handleSearchIconClick}
-            ref={searchBarRef}
-          />
-        ) : (
-          <button onClick={handleSearchIconClick} className="mr-[10px]">
-            <SearchIcon className="text-white h-10 size-[24px]" />
-          </button>
-        )} */}
 
         {notificationBoxVisible ? (
           <NotificationBox
