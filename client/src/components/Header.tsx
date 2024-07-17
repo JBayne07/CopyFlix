@@ -39,7 +39,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
     if (notificationBoxVisible) {
       timeout = setTimeout(() => {
         setNotificationBoxVisible(false);
-      }, 300);
+      }, 200);
     }
   };
 
@@ -61,7 +61,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
     if (profileBoxVisible) {
       timeout = setTimeout(() => {
         setProfileBoxVisible(false);
-      }, 300);
+      }, 200);
     }
   };
 

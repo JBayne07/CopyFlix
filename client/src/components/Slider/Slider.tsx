@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { SliderItem } from "./SliderItem";
 import { SliderArrow } from "./SliderArrow";
 import { Movie } from "../../services/types";
+import { PaginationIndicator } from "../PaginationIndicator";
 
 // This is a slider that is a recreation of netflix's slider
 // The slider uses 3 sections (left, middle, and right)
@@ -146,19 +147,26 @@ export const Slider = ({ movies }: SliderProps): JSX.Element => {
   };
 
   return (
-    <div className="flex justify-center my-2 relative px-[4%] overflow-x-hidden">
-      {/* Left arrow */}
-      {hasSliderMoved && (
-        <SliderArrow direction={"left"} handleFunction={handleLeftArrow} />
-      )}
+    <div className="justify-center my-2 relative">
+      <PaginationIndicator
+        index={index / numItems}
+        totalItems={movies.length / numItems}
+      />
 
-      {/* Carousal items */}
-      <div className={"flex whitespace-nowrap"} style={style}>
-        {handleItems()}
+      <div className="flex relative px-[4%] overflow-x-hidden">
+        {/* Left arrow */}
+        {hasSliderMoved && (
+          <SliderArrow direction={"left"} handleFunction={handleLeftArrow} />
+        )}
+
+        {/* Carousal items */}
+        <div className={"flex whitespace-nowrap"} style={style}>
+          {handleItems()}
+        </div>
+
+        {/* Right arrow */}
+        <SliderArrow direction={"right"} handleFunction={handleRightArrow} />
       </div>
-
-      {/* Right arrow */}
-      <SliderArrow direction={"right"} handleFunction={handleRightArrow} />
     </div>
   );
 };
