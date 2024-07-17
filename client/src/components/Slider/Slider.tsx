@@ -150,7 +150,7 @@ export const Slider = ({ movies }: SliderProps): JSX.Element => {
     <div className="justify-center my-2 relative">
       <PaginationIndicator
         index={index / numItems}
-        totalItems={movies.length / numItems}
+        totalSlides={movies.length / numItems}
       />
 
       <div className="flex relative px-[4%] overflow-x-hidden">

@@ -2,16 +2,16 @@ import { PaginationIcon } from "../assets/PaginationIcon";
 
 interface PaginationIndicatorProps {
   index: number;
-  totalItems: number;
+  totalSlides: number;
 }
 
 export const PaginationIndicator = ({
   index,
-  totalItems,
+  totalSlides,
 }: PaginationIndicatorProps): JSX.Element => {
   const renderPaginationIcons = () => {
     const output = [];
-    for (let i = 0; i < totalItems; i++) {
+    for (let i = 0; i < totalSlides; i++) {
       if (i === index) {
         output.push(<PaginationIcon className="bg-[#aaa] " />);
       } else {
