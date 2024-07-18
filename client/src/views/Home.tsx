@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { MovieRow } from "../components/MovieRow";
 import { Movie } from "../services/types";
+import { ModalProvider } from "../contexts/ModalContext";
+import { Modal } from "../components/Modal/Modal";
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -37,26 +39,32 @@ export const Home = () => {
           </div>
         </div>
       </div>
-      <MovieRow
-        title="Continue Watching"
-        movies={movies}
-        className="my-[3vw]"
-      />
-      <MovieRow
-        title="My List"
-        movies={movies}
-        className="mt-[30px] mb-[30px]"
-      />
-      <MovieRow
-        title="Recommended"
-        movies={movies}
-        className="mt-[30px] mb-[30px]"
-      />
-      <MovieRow
-        title="Award Winning"
-        movies={movies}
-        className="mt-[30px] mb-[30px]"
-      />
+
+      <ModalProvider>
+        <>
+          <MovieRow
+            title="Continue Watching"
+            movies={movies}
+            className="my-[3vw]"
+          />
+          <MovieRow
+            title="My List"
+            movies={movies}
+            className="mt-[30px] mb-[30px]"
+          />
+          <MovieRow
+            title="Recommended"
+            movies={movies}
+            className="mt-[30px] mb-[30px]"
+          />
+          <MovieRow
+            title="Award Winning"
+            movies={movies}
+            className="mt-[30px] mb-[30px]"
+          />
+          <Modal />
+        </>
+      </ModalProvider>
     </div>
   );
 };
