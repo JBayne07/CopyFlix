@@ -114,13 +114,25 @@ export const Slider = ({ movies }: SliderProps): JSX.Element => {
         i = rightIndex;
       }
       if (movies[i]) {
-        output.push(
-          <SliderItem
-            movie={movies[i]}
-            key={movies[i].Id}
-            width={100 / numItems}
-          />
-        );
+        if (i % numItems === 0) {
+          output.push(
+            <SliderItem
+              movie={movies[i]}
+              key={movies[i].Id}
+              itemWidth={100 / numItems}
+              isEdge={true}
+            />
+          );
+        } else {
+          output.push(
+            <SliderItem
+              movie={movies[i]}
+              key={movies[i].Id}
+              itemWidth={100 / numItems}
+              isEdge={false}
+            />
+          );
+        }
       }
       i++;
     }
@@ -130,7 +142,8 @@ export const Slider = ({ movies }: SliderProps): JSX.Element => {
         <SliderItem
           movie={movies[leftMostIndex]}
           key={movies[leftMostIndex].Id}
-          width={100 / numItems}
+          itemWidth={100 / numItems}
+          isEdge={false}
         />
       );
     }
@@ -139,7 +152,8 @@ export const Slider = ({ movies }: SliderProps): JSX.Element => {
         <SliderItem
           movie={movies[rightMostIndex]}
           key={movies[rightMostIndex].Id}
-          width={100 / numItems}
+          itemWidth={100 / numItems}
+          isEdge={false}
         />
       );
     }
@@ -160,7 +174,7 @@ export const Slider = ({ movies }: SliderProps): JSX.Element => {
         )}
 
         {/* Carousal items */}
-        <div className={"flex whitespace-nowrap"} style={style}>
+        <div className={"flex whitespace-nowrap relative"} style={style}>
           {handleItems()}
         </div>
 

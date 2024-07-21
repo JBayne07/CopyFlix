@@ -1,37 +1,64 @@
-import { useContext } from "react";
+import { useContext, useRef } from "react";
 import { Movie } from "../../services/types";
 import { ModalContext } from "../../contexts/ModalContext";
+import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 
 interface SliderItemProps {
   movie: Movie;
-  key: any;
-  width: number;
+  isEdge: boolean;
+  itemWidth: number;
 }
 
-export const SliderItem = ({ movie, width }: SliderItemProps): JSX.Element => {
-  const { isItemHovered, setIsItemHovered, setMovie } =
-    useContext(ModalContext);
-  const handleMouseEnter = () => {
-    console.log("Mouse Entered", movie.Title);
-    setIsItemHovered((prev) => !prev);
-    setMovie(movie);
-    console.log(isItemHovered);
-  };
+export const SliderItem = ({
+  movie,
+  isEdge,
+  itemWidth,
+}: SliderItemProps): JSX.Element => {
+  const {
+    isItemHovered,
+    setIsItemHovered,
+    setMovie,
+    setPosX,
+    setPosY,
+    setLeftAlign,
+  } = useContext(ModalContext);
+  const itemRef = useRef<HTMLDivElement>(null);
+  const { width } = useWindowDimensions();
 
-  const handleMouseLeave = () => {
-    console.log("Mouse Leave", movie.Title);
-    setIsItemHovered((prev) => !prev);
-    setMovie(undefined);
+  const handleMouseEnter = () => {
+    setIsItemHovered(true);
+    setMovie(movie);
+    const positions = itemRef.current?.getBoundingClientRect();
+
+    setPosY(positions?.top);
+    setPosX(() => {
+      if (positions) {
+        if (positions.width + positions.x + width * 0.08 > width) {
+          setLeftAlign(false);
+          return width * 0.04;
+        } else if (!isEdge) {
+          setLeftAlign(true);
+          return positions.left - width * 0.04;
+        } else {
+          setLeftAlign(true);
+          return positions.left;
+        }
+      }
+    });
   };
 
   return (
     <div
-      className="flex-[0_0_20%] max-w-[20%] px-[0.2vw]"
+      className="relative flex-[0_0_20%] max-w-[20%] px-[0.2vw]"
       onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+      ref={itemRef}
     >
       {movie && (
-        <img className="w-[100%] aspect-video rounded" src={movie.Src} alt="" />
+        <img
+          className="w-[100%] aspect-video rounded-sm"
+          src={movie.Src}
+          alt=""
+        />
       )}
     </div>
   );

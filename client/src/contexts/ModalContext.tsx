@@ -6,6 +6,12 @@ interface ModalContextType {
   setIsItemHovered: Dispatch<SetStateAction<boolean | undefined>>;
   movie?: Movie;
   setMovie: Dispatch<SetStateAction<Movie | undefined>>;
+  posY?: number;
+  setPosY: Dispatch<SetStateAction<number | undefined>>;
+  posX?: number;
+  setPosX: Dispatch<SetStateAction<number | undefined>>;
+  leftAlign?: boolean;
+  setLeftAlign: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 interface ModalContextProps {
@@ -13,19 +19,34 @@ interface ModalContextProps {
 }
 
 export const ModalContext = createContext<ModalContextType>({
-  isItemHovered: false,
   setIsItemHovered: () => undefined,
-  movie: undefined,
   setMovie: () => undefined,
+  setPosY: () => undefined,
+  setPosX: () => undefined,
+  setLeftAlign: () => undefined,
 });
 
 export const ModalProvider = ({ children }: ModalContextProps) => {
   const [isItemHovered, setIsItemHovered] = useState<boolean>();
   const [movie, setMovie] = useState<Movie>();
+  const [posY, setPosY] = useState<number>();
+  const [posX, setPosX] = useState<number>();
+  const [leftAlign, setLeftAlign] = useState<boolean>();
 
   return (
     <ModalContext.Provider
-      value={{ isItemHovered, setIsItemHovered, movie, setMovie }}
+      value={{
+        isItemHovered,
+        setIsItemHovered,
+        movie,
+        setMovie,
+        posY,
+        setPosY,
+        posX,
+        setPosX,
+        leftAlign,
+        setLeftAlign,
+      }}
     >
       {children}
     </ModalContext.Provider>

@@ -1,25 +1,56 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ModalContext } from "../../contexts/ModalContext";
+import { ModalContent } from "./ModalContent";
+import { ModalPreview } from "./ModalPreview";
 
 export const Modal = () => {
-  const { isItemHovered, movie } = useContext(ModalContext);
+  const {
+    isItemHovered,
+    setIsItemHovered,
+    movie,
+    setMovie,
+    posY,
+    setPosY,
+    posX,
+    setPosX,
+    leftAlign,
+  } = useContext(ModalContext);
+  const [style, setStyle] = useState<object>({});
 
   useEffect(() => {
-    console.log("Modal", isItemHovered, movie);
-  }, [isItemHovered, movie]);
+    let position: {
+      top: string;
+      left?: string;
+      right?: string;
+      opacity?: string;
+    } = {
+      top: `${posY}px`,
+    };
+    if (leftAlign) {
+      position["left"] = `${posX}px`;
+    } else {
+      position["right"] = `${posX}px`;
+    }
+    setStyle(position);
+  }, [movie, posX, posY]);
+
+  const handleMouseLeave = () => {
+    setIsItemHovered(false);
+    setMovie(undefined);
+    setPosX(undefined);
+    setPosY(undefined);
+  };
 
   return (
     <>
       {isItemHovered && (
-        <div className="p-[1em] flex flex-col absolute top-0 w-[300px] z-[99]">
-          <div>
-            <img
-              className="w-[100%] aspect-video rounded"
-              src={movie?.Src}
-              alt=""
-            />
-          </div>
-          <span className="text-white">Hello</span>
+        <div
+          className={`flex flex-col absolute w-[300px] z-50 rounded overflow-hidden`}
+          style={style}
+          onMouseLeave={handleMouseLeave}
+        >
+          {movie && <ModalPreview movie={movie} />}
+          <ModalContent />
         </div>
       )}
     </>
