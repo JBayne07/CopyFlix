@@ -10,8 +10,12 @@ interface ModalContextType {
   setPosY: Dispatch<SetStateAction<number | undefined>>;
   posX?: number;
   setPosX: Dispatch<SetStateAction<number | undefined>>;
-  leftAlign?: boolean;
-  setLeftAlign: Dispatch<SetStateAction<boolean | undefined>>;
+  isLeftAlign?: boolean;
+  setIsLeftAlign: Dispatch<SetStateAction<boolean | undefined>>;
+  isMiddle?: boolean;
+  setIsMiddle: Dispatch<SetStateAction<boolean | undefined>>;
+  itemWidth?: number;
+  setItemWidth: Dispatch<SetStateAction<number | undefined>>;
 }
 
 interface ModalContextProps {
@@ -23,7 +27,9 @@ export const ModalContext = createContext<ModalContextType>({
   setMovie: () => undefined,
   setPosY: () => undefined,
   setPosX: () => undefined,
-  setLeftAlign: () => undefined,
+  setIsLeftAlign: () => undefined,
+  setIsMiddle: () => undefined,
+  setItemWidth: () => undefined,
 });
 
 export const ModalProvider = ({ children }: ModalContextProps) => {
@@ -31,7 +37,9 @@ export const ModalProvider = ({ children }: ModalContextProps) => {
   const [movie, setMovie] = useState<Movie>();
   const [posY, setPosY] = useState<number>();
   const [posX, setPosX] = useState<number>();
-  const [leftAlign, setLeftAlign] = useState<boolean>();
+  const [isLeftAlign, setIsLeftAlign] = useState<boolean>();
+  const [isMiddle, setIsMiddle] = useState<boolean>();
+  const [itemWidth, setItemWidth] = useState<number>();
 
   return (
     <ModalContext.Provider
@@ -44,8 +52,12 @@ export const ModalProvider = ({ children }: ModalContextProps) => {
         setPosY,
         posX,
         setPosX,
-        leftAlign,
-        setLeftAlign,
+        isLeftAlign,
+        setIsLeftAlign,
+        isMiddle,
+        setIsMiddle,
+        itemWidth,
+        setItemWidth,
       }}
     >
       {children}

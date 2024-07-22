@@ -20,37 +20,49 @@ export const SliderItem = ({
     setMovie,
     setPosX,
     setPosY,
-    setLeftAlign,
+    setIsLeftAlign,
+    setIsMiddle,
+    setItemWidth,
   } = useContext(ModalContext);
   const itemRef = useRef<HTMLDivElement>(null);
   const { width } = useWindowDimensions();
 
-  const handleMouseEnter = () => {
+  const handleMouseOver = () => {
+    if (isItemHovered) {
+      setTimeout(() => {
+        setModalState();
+      }, 500);
+    } else {
+      setModalState();
+    }
+  };
+
+  const setModalState = () => {
     setIsItemHovered(true);
     setMovie(movie);
     const positions = itemRef.current?.getBoundingClientRect();
-
-    setPosY(positions?.top);
+    setPosY(positions!.top + positions!.height / 2 + 15);
     setPosX(() => {
       if (positions) {
         if (positions.width + positions.x + width * 0.08 > width) {
-          setLeftAlign(false);
+          setIsLeftAlign(false);
           return width * 0.04;
         } else if (!isEdge) {
-          setLeftAlign(true);
-          return positions.left - width * 0.04;
+          setIsMiddle(true);
+          return positions.left;
         } else {
-          setLeftAlign(true);
+          setIsLeftAlign(true);
           return positions.left;
         }
       }
     });
+    setItemWidth(itemRef.current?.offsetWidth);
   };
 
   return (
     <div
       className="relative flex-[0_0_20%] max-w-[20%] px-[0.2vw]"
-      onMouseEnter={handleMouseEnter}
+      onMouseOver={handleMouseOver}
       ref={itemRef}
     >
       {movie && (
