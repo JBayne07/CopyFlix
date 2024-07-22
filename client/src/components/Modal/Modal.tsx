@@ -71,7 +71,7 @@ export const Modal = () => {
         left: left,
         right: right,
         transform: `scale(1)`,
-        transitionDuration: "500ms",
+        transitionDuration: "300ms",
         transformOrigin: origin,
       });
     }, 100);
@@ -85,7 +85,7 @@ export const Modal = () => {
       setIsLeftAlign(false);
       setIsMiddle(false);
       setItemWidth(0);
-    }, 500);
+    }, 300);
   };
 
   return (
