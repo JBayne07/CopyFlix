@@ -25,15 +25,16 @@ export const Modal = () => {
   useEffect(() => {
     const { top, left, right, origin } = getPosition();
 
-    setStyle({ top: top, left: left, right: right });
+    setStyle({ top: top, left: left, right: right, width: itemWidth });
 
     setTimeout(() => {
       setStyle({
+        width: itemWidth,
         top: top,
         left: left,
         right: right,
         transform: `scale(1.25)`,
-        transitionDuration: "500ms",
+        transitionDuration: "200ms",
         transformOrigin: origin,
       });
     }, 50);

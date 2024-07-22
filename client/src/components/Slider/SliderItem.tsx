@@ -15,7 +15,6 @@ export const SliderItem = ({
   itemWidth,
 }: SliderItemProps): JSX.Element => {
   const {
-    isItemHovered,
     setIsItemHovered,
     setMovie,
     setPosX,
@@ -26,14 +25,18 @@ export const SliderItem = ({
   } = useContext(ModalContext);
   const itemRef = useRef<HTMLDivElement>(null);
   const { width } = useWindowDimensions();
+  let timer: NodeJS.Timeout | null;
 
   const handleMouseOver = () => {
-    if (isItemHovered) {
-      setTimeout(() => {
-        setModalState();
-      }, 500);
-    } else {
+    timer = setTimeout(() => {
       setModalState();
+    }, 500);
+  };
+
+  const handleMouseLeave = () => {
+    if (timer) {
+      clearTimeout(timer);
+      timer = null;
     }
   };
 
@@ -41,7 +44,7 @@ export const SliderItem = ({
     setIsItemHovered(true);
     setMovie(movie);
     const positions = itemRef.current?.getBoundingClientRect();
-    setPosY(positions!.top + positions!.height / 2 + 15);
+    setPosY(positions!.top + positions!.height / 2);
     setPosX(() => {
       if (positions) {
         if (positions.width + positions.x + width * 0.08 > width) {
@@ -63,6 +66,7 @@ export const SliderItem = ({
     <div
       className="relative flex-[0_0_20%] max-w-[20%] px-[0.2vw]"
       onMouseOver={handleMouseOver}
+      onMouseLeave={handleMouseLeave}
       ref={itemRef}
     >
       {movie && (
