@@ -13,9 +13,13 @@ export const PaginationIndicator = ({
     const output = [];
     for (let i = 0; i < totalSlides; i++) {
       if (i === index) {
-        output.push(<PaginationIcon className="bg-[#aaa] " key={i} />);
+        output.push(
+          <PaginationIcon className="bg-pagination-active" key={i} />
+        );
       } else {
-        output.push(<PaginationIcon className="bg-[#4d4d4d]" key={i} />);
+        output.push(
+          <PaginationIcon className="bg-pagination-passive" key={i} />
+        );
       }
     }
 

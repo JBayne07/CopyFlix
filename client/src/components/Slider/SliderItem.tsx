@@ -28,6 +28,7 @@ export const SliderItem = ({
   let timer: NodeJS.Timeout | null;
 
   const handleMouseOver = () => {
+    if (timer) return;
     timer = setTimeout(() => {
       setModalState();
     }, 500);
@@ -37,6 +38,7 @@ export const SliderItem = ({
     if (timer) {
       clearTimeout(timer);
       timer = null;
+      setIsItemHovered(false);
     }
   };
 
@@ -59,7 +61,7 @@ export const SliderItem = ({
         }
       }
     });
-    setItemWidth(itemRef.current?.offsetWidth);
+    setItemWidth(1.5 * itemRef.current?.offsetWidth!);
   };
 
   return (

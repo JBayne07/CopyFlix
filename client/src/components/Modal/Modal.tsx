@@ -25,7 +25,13 @@ export const Modal = () => {
   useEffect(() => {
     const { top, left, right, origin } = getPosition();
 
-    setStyle({ top: top, left: left, right: right, width: itemWidth });
+    setStyle({
+      top: top,
+      left: left,
+      right: right,
+      width: itemWidth,
+      transform: "scale(0.75)",
+    });
 
     setTimeout(() => {
       setStyle({
@@ -33,9 +39,9 @@ export const Modal = () => {
         top: top,
         left: left,
         right: right,
-        transform: `scale(1.25)`,
+        transform: "scale(1) translateY(-100px)",
         transitionDuration: "200ms",
-        transformOrigin: origin,
+        // transformOrigin: origin,
       });
     }, 50);
   }, [isItemHovered, movie, posX, posY]);
@@ -92,7 +98,7 @@ export const Modal = () => {
     <>
       {isItemHovered && (
         <div
-          className={`flex flex-col absolute z-[3] px-[0.2vw] rounded overflow-hidden ease-in-out`}
+          className={`flex flex-col absolute z-[3] rounded overflow-hidden ease-linear`}
           style={style}
           onMouseLeave={handleMouseLeave}
         >

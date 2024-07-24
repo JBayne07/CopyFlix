@@ -16,7 +16,7 @@ export const RootLayout = () => {
     });
   });
   return (
-    <div className="bg-zinc-900 w-full min-h-screen flex flex-col flex-1 overscroll-x-none margin-0">
+    <div className="w-full min-h-screen flex flex-col flex-1 overscroll-x-none margin-0">
       <div className="min-h-screen relative mt-[-70px]">
         <Header isHeaderTransparent={isHeaderTransparent} />
         <Outlet />

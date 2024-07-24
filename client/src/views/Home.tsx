@@ -24,12 +24,12 @@ export const Home = () => {
   }, []);
 
   return (
-    <div>
+    <div className="h-full w-full">
       <div className="h-[41vw] relative z-[1]">
         <div className="relative block mt-[-70px] z-0">
           <div className="relative left-0 top-0 right-0 w-full z-0">
             <div className="absolute w-full z-0">
-              <div className="text-3xl text-white h-[56.25vw] w-full z-0">
+              <div className="h-[56.25vw] w-full z-0">
                 <img
                   className="w-full h-full opacity-100 z-0"
                   src="https://via.placeholder.com/310/343333?text=Main Window"

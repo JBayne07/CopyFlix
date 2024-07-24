@@ -23,7 +23,7 @@ export const SearchBar = () => {
         onClick={handleSearchIconClick}
         className={`self-center ${searchBarVisible ? "pr-[10px]" : ""}`}
       >
-        <SearchIcon className="text-white h-10 size-[24px]" />
+        <SearchIcon className=" h-10 size-[24px]" />
       </button>
       <input
         type="text"

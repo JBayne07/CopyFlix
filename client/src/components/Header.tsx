@@ -83,50 +83,38 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
     <div
       className={
         "h-[70px] px-[40px] flex flex-row w-screen justify-between sticky top-0 z-[2] " +
-        (isHeaderTransparent ? "" : " bg-black")
+        (isHeaderTransparent ? "bg-transparent" : " bg-primary")
       }
     >
       <div className="flex items-center mr-[10px]">
         <Link
           to="/"
-          className="text-red-600 font-bold self-center text-3xl mr-[25px]"
+          className="text-primary-foreground font-bold self-center text-3xl mr-[25px]"
         >
           <img src={NetflixIcon} className="h-12" alt="Netflix" />
         </Link>
         <Link
           to="/"
-          className="text-white text-sm ml-[18px] hover:text-gray-300"
+          className="text-sm ml-[18px] text-popout-primary hover:text-accent-foreground"
         >
           Home
         </Link>
-        <Link
-          to="/"
-          className="text-white text-sm ml-[18px] hover:text-gray-300"
-        >
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
           TV shows
         </Link>
         <Link
           to="movies"
-          className="text-white text-sm ml-[18px] hover:text-gray-300"
+          className="text-sm ml-[18px] hover:text-accent-foreground"
         >
           Movies
         </Link>
-        <Link
-          to="/"
-          className="text-white text-sm ml-[18px] hover:text-gray-300"
-        >
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
           New & Popular
         </Link>
-        <Link
-          to="/"
-          className="text-white text-sm ml-[18px] hover:text-gray-300"
-        >
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
           My List
         </Link>
-        <Link
-          to="/"
-          className="text-white text-sm ml-[18px] hover:text-gray-300"
-        >
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
           Browse by Languages
         </Link>
       </div>
@@ -146,7 +134,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
             onMouseEnter={handleNotificationIconMouseEnter}
             className="mr-[10px]"
           >
-            <NotificationIcon className="text-white size-[24px]" />
+            <NotificationIcon className=" size-[24px]" />
           </button>
         )}
         {profileBoxVisible ? (
@@ -161,7 +149,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
             onMouseEnter={handleProfileBoxMouseEnter}
             className="mr-[10px]"
           >
-            <ProfileIcon className="text-white size-[24px]" />
+            <ProfileIcon className=" size-[24px]" />
           </button>
         )}
       </div>
