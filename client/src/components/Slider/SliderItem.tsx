@@ -54,7 +54,7 @@ export const SliderItem = ({
           return width * 0.04;
         } else if (!isEdge) {
           setIsMiddle(true);
-          return positions.left;
+          return positions.left - width * 0.04;
         } else {
           setIsLeftAlign(true);
           return positions.left;

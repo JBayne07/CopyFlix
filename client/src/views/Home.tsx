@@ -24,7 +24,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="h-full w-full">
+    <div className="h-full w-full relative">
       <div className="h-[41vw] relative z-[1]">
         <div className="relative block mt-[-70px] z-0">
           <div className="relative left-0 top-0 right-0 w-full z-0">

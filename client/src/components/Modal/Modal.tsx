@@ -30,7 +30,8 @@ export const Modal = () => {
       left: left,
       right: right,
       width: itemWidth,
-      transform: "scale(0.75)",
+      transform: `scale(0.5)`,
+      transformOrigin: origin,
     });
 
     setTimeout(() => {
@@ -40,14 +41,40 @@ export const Modal = () => {
         left: left,
         right: right,
         transform: "scale(1) translateY(-100px)",
-        transitionDuration: "200ms",
-        // transformOrigin: origin,
+        transitionDuration: "250ms",
+        transformOrigin: origin,
       });
     }, 50);
   }, [isItemHovered, movie, posX, posY]);
 
+  const handleMouseLeave = () => {
+    const { top, left, right } = getPosition();
+    setTimeout(() => {
+      setStyle({
+        width: itemWidth,
+        top: top,
+        left: left,
+        right: right,
+        transform: `scale(0.5)`,
+        transitionDuration: "200ms",
+        transformOrigin: origin,
+      });
+    }, 100);
+
+    setTimeout(() => {
+      setIsItemHovered(false);
+      setMovie(undefined);
+      setPosX(undefined);
+      setPosY(undefined);
+      setStyle({});
+      setIsLeftAlign(false);
+      setIsMiddle(false);
+      setItemWidth(0);
+    }, 200);
+  };
+
   const getPosition = () => {
-    let top = `${posY! + window.scrollY}px`;
+    let top = `${posY! + window.scrollY - 30}px`;
     let left = "";
     let right = "";
     let origin = "";
@@ -66,32 +93,6 @@ export const Modal = () => {
     }
 
     return { top, left, right, origin };
-  };
-
-  const handleMouseLeave = () => {
-    const { top, left, right } = getPosition();
-    setTimeout(() => {
-      setStyle({
-        width: itemWidth,
-        top: top,
-        left: left,
-        right: right,
-        transform: `scale(1)`,
-        transitionDuration: "300ms",
-        transformOrigin: origin,
-      });
-    }, 100);
-
-    setTimeout(() => {
-      setIsItemHovered(false);
-      setMovie(undefined);
-      setPosX(undefined);
-      setPosY(undefined);
-      setStyle({});
-      setIsLeftAlign(false);
-      setIsMiddle(false);
-      setItemWidth(0);
-    }, 300);
   };
 
   return (
