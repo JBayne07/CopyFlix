@@ -1,5 +1,5 @@
 import { useContext, useEffect, useRef } from "react";
-import { ModalContent } from "./ModalContent";
+import { ModalContent } from "./ModalContent/ModalContent";
 import { ModalPreview } from "./ModalPreview";
 import { PopoverContext } from "@/contexts/PopoverContext";
 
@@ -17,13 +17,15 @@ export const Modal = () => {
   };
 
   return (
-    <div
-      className="flex flex-col absolute top-[12vh] left-[10vw] bg-background w-[80vw] h-[80vh] z-10"
-      onBlur={handleModalBlur}
-      ref={modalRef}
-    >
-      <ModalPreview />
-      <ModalContent />
+    <div className="flex items-center justify-center">
+      <div
+        className="flex flex-col absolute top-[12vh] left-[15vw] bg-background w-[71vw] h-fit z-10"
+        onBlur={handleModalBlur}
+        ref={modalRef}
+      >
+        <ModalPreview />
+        <ModalContent />
+      </div>
     </div>
   );
 };

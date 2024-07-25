@@ -66,7 +66,7 @@ export const SliderItem = ({
 
   return (
     <div
-      className="relative flex flex-[0_0_20%] max-w-[20%] px-[0.2vw] items-center justify-center"
+      className="relative flex flex-[0_0_20%] max-w-[20%] px-[0.2vw] items-center justify-center cursor-pointer"
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       ref={itemRef}
