@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { MovieRow } from "../components/MovieRow";
 import { Movie } from "../services/types";
-import { ModalProvider } from "../contexts/ModalContext";
-import { Modal } from "../components/Modal/Modal";
+import { PopoverProvider } from "../contexts/PopoverContext";
+import { Popover } from "../components/Popover/Popover";
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -40,7 +40,7 @@ export const Home = () => {
         </div>
       </div>
 
-      <ModalProvider>
+      <PopoverProvider>
         <>
           <MovieRow
             title="Continue Watching"
@@ -62,9 +62,9 @@ export const Home = () => {
             movies={movies}
             className="mt-[30px] mb-[30px]"
           />
-          <Modal />
+          <Popover />
         </>
-      </ModalProvider>
+      </PopoverProvider>
     </div>
   );
 };

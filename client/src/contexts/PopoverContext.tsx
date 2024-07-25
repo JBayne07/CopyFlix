@@ -1,7 +1,7 @@
 import { createContext, Dispatch, SetStateAction, useState } from "react";
 import { Movie } from "../services/types";
 
-interface ModalContextType {
+interface PopoverContextType {
   isItemHovered?: boolean;
   setIsItemHovered: Dispatch<SetStateAction<boolean | undefined>>;
   movie?: Movie;
@@ -16,13 +16,15 @@ interface ModalContextType {
   setIsMiddle: Dispatch<SetStateAction<boolean | undefined>>;
   itemWidth?: number;
   setItemWidth: Dispatch<SetStateAction<number | undefined>>;
+  isModalOpen?: boolean;
+  setIsModalOpen: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
-interface ModalContextProps {
+interface PopoverContentProps {
   children: JSX.Element;
 }
 
-export const ModalContext = createContext<ModalContextType>({
+export const PopoverContext = createContext<PopoverContextType>({
   setIsItemHovered: () => undefined,
   setMovie: () => undefined,
   setPosY: () => undefined,
@@ -30,9 +32,10 @@ export const ModalContext = createContext<ModalContextType>({
   setIsLeftAlign: () => undefined,
   setIsMiddle: () => undefined,
   setItemWidth: () => undefined,
+  setIsModalOpen: () => undefined,
 });
 
-export const ModalProvider = ({ children }: ModalContextProps) => {
+export const PopoverProvider = ({ children }: PopoverContentProps) => {
   const [isItemHovered, setIsItemHovered] = useState<boolean>();
   const [movie, setMovie] = useState<Movie>();
   const [posY, setPosY] = useState<number>();
@@ -40,9 +43,10 @@ export const ModalProvider = ({ children }: ModalContextProps) => {
   const [isLeftAlign, setIsLeftAlign] = useState<boolean>();
   const [isMiddle, setIsMiddle] = useState<boolean>();
   const [itemWidth, setItemWidth] = useState<number>();
+  const [isModalOpen, setIsModalOpen] = useState<boolean>();
 
   return (
-    <ModalContext.Provider
+    <PopoverContext.Provider
       value={{
         isItemHovered,
         setIsItemHovered,
@@ -58,9 +62,11 @@ export const ModalProvider = ({ children }: ModalContextProps) => {
         setIsMiddle,
         itemWidth,
         setItemWidth,
+        isModalOpen,
+        setIsModalOpen,
       }}
     >
       {children}
-    </ModalContext.Provider>
+    </PopoverContext.Provider>
   );
 };

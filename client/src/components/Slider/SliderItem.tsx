@@ -1,6 +1,6 @@
 import { useContext, useRef } from "react";
 import { Movie } from "../../services/types";
-import { ModalContext } from "../../contexts/ModalContext";
+import { PopoverContext } from "../../contexts/PopoverContext";
 import { useWindowDimensions } from "../../hooks/useWindowDimensions";
 
 interface SliderItemProps {
@@ -22,7 +22,7 @@ export const SliderItem = ({
     setIsLeftAlign,
     setIsMiddle,
     setItemWidth,
-  } = useContext(ModalContext);
+  } = useContext(PopoverContext);
   const itemRef = useRef<HTMLDivElement>(null);
   const { width } = useWindowDimensions();
   let timer: NodeJS.Timeout | null;
@@ -66,14 +66,14 @@ export const SliderItem = ({
 
   return (
     <div
-      className="relative flex-[0_0_20%] max-w-[20%] px-[0.2vw]"
+      className="relative flex flex-[0_0_20%] max-w-[20%] px-[0.2vw] items-center justify-center"
       onMouseOver={handleMouseOver}
       onMouseLeave={handleMouseLeave}
       ref={itemRef}
     >
       {movie && (
         <img
-          className="w-[100%] aspect-video rounded-sm"
+          className="w-full aspect-video rounded-sm"
           src={movie.Src}
           alt=""
         />
