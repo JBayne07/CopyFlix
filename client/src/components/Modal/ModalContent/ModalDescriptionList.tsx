@@ -13,7 +13,7 @@ export const ModalDescriptionList = ({
         {title}:{" "}
       </span>
       {list.map((item) => (
-        <span className="text-popout-primary break-words text-sm">
+        <span className="text-popout-primary break-words text-sm" key={item}>
           {" "}
           {item},{" "}
         </span>

@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 import { MovieRow } from "../components/MovieRow";
 import { Movie } from "../services/types";
-import { PopoverProvider } from "../contexts/PopoverContext";
-import { Popover } from "../components/Popover/Popover";
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
@@ -60,7 +58,6 @@ export const Home = () => {
         movies={movies}
         className="mt-[30px] mb-[30px]"
       />
-      {/* <Popover /> */}
     </div>
   );
 };

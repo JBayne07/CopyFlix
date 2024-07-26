@@ -18,6 +18,8 @@ interface PopoverContextType {
   setItemWidth: Dispatch<SetStateAction<number | undefined>>;
   isModalOpen?: boolean;
   setIsModalOpen: Dispatch<SetStateAction<boolean | undefined>>;
+  windowScroll?: number;
+  setWindowScroll: Dispatch<SetStateAction<number | undefined>>;
 }
 
 interface PopoverContentProps {
@@ -33,6 +35,7 @@ export const PopoverContext = createContext<PopoverContextType>({
   setIsMiddle: () => undefined,
   setItemWidth: () => undefined,
   setIsModalOpen: () => undefined,
+  setWindowScroll: () => undefined,
 });
 
 export const PopoverProvider = ({ children }: PopoverContentProps) => {
@@ -44,6 +47,7 @@ export const PopoverProvider = ({ children }: PopoverContentProps) => {
   const [isMiddle, setIsMiddle] = useState<boolean>();
   const [itemWidth, setItemWidth] = useState<number>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>();
+  const [windowScroll, setWindowScroll] = useState<number>();
 
   return (
     <PopoverContext.Provider
@@ -64,6 +68,8 @@ export const PopoverProvider = ({ children }: PopoverContentProps) => {
         setItemWidth,
         isModalOpen,
         setIsModalOpen,
+        windowScroll,
+        setWindowScroll,
       }}
     >
       {children}

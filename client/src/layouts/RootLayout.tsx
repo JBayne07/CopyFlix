@@ -1,8 +1,4 @@
-import { useContext, useEffect, useState } from "react";
-import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
-import { Outlet } from "react-router-dom";
-import { PopoverContext, PopoverProvider } from "@/contexts/PopoverContext";
+import { PopoverProvider } from "@/contexts/PopoverContext";
 import { Popover } from "@/components/Popover/Popover";
 import { MainWindowLayout } from "./MainWindowLayout";
 

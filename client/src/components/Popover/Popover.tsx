@@ -28,8 +28,6 @@ export const Popover = () => {
   useEffect(() => {
     const { top, left, right, origin } = getPosition();
 
-    console.log(top, left, origin);
-
     setStyle({
       top: top,
       left: left,

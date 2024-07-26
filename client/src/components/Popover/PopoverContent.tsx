@@ -8,11 +8,10 @@ import { PopoverButton } from "./PopoverButton";
 import { ThumbsUpIcon } from "@/assets/ThumbsUpIcon";
 import { DoubleThumbsUpIcon } from "@/assets/DoubleThumbsUpIcon";
 import { useContext, useRef, useState } from "react";
-import { Modal } from "../Modal/Modal";
 import { PopoverContext } from "@/contexts/PopoverContext";
 
 export const PopoverContent = (): JSX.Element => {
-  const { setIsModalOpen } = useContext(PopoverContext);
+  const { setIsModalOpen, setWindowScroll } = useContext(PopoverContext);
   const [isLikeIconHovered, setIsLikeIconHovered] = useState<boolean>(false);
   const likeIconRef = useRef<HTMLButtonElement>(null);
   const [style, setStyle] = useState<object>({});
@@ -30,8 +29,7 @@ export const PopoverContent = (): JSX.Element => {
   };
 
   const openModal = () => {
-    // console.log("open modal");
-    // return <Modal />;
+    setWindowScroll(window.scrollY);
     setIsModalOpen(true);
   };
 
