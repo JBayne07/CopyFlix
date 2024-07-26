@@ -17,7 +17,7 @@ export const MovieRow = ({
     <div className={"group/div h-1/5 relative z-[1] " + className}>
       <div className="flex ml-[4%] h-1/5">
         <button className="flex group/heading">
-          <h1 className="text-2xl ">{title}</h1>
+          <h1 className="text-2xl pl-[0.2vw]">{title}</h1>
           <h1 className="hidden group-hover/heading:block text-sm text-explore self-end ml-3">
             Explore All
           </h1>

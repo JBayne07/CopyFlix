@@ -46,7 +46,7 @@ export const SliderItem = ({
     setIsItemHovered(true);
     setMovie(movie);
     const positions = itemRef.current?.getBoundingClientRect();
-    setPosY(positions!.top + positions!.height / 2);
+    setPosY(positions!.top);
     setPosX(() => {
       if (positions) {
         if (positions.width + positions.x + width * 0.08 > width) {

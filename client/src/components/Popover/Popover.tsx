@@ -28,6 +28,8 @@ export const Popover = () => {
   useEffect(() => {
     const { top, left, right, origin } = getPosition();
 
+    console.log(top, left, origin);
+
     setStyle({
       top: top,
       left: left,
@@ -44,7 +46,7 @@ export const Popover = () => {
         left: left,
         right: right,
         transform: "scale(1) translateY(-100px)",
-        transitionDuration: "250ms",
+        transitionDuration: "150ms",
         transformOrigin: origin,
       });
     }, 50);
@@ -72,19 +74,20 @@ export const Popover = () => {
       setIsLeftAlign(false);
       setIsMiddle(false);
       setItemWidth(0);
+      if (!isModalOpen) setMovie(undefined);
     }, 200);
   };
 
   const getPosition = () => {
-    let top = `${posY! + window.scrollY - 30}px`;
+    let top = `${posY! + window.scrollY}px`;
     let left = "";
     let right = "";
     let origin = "";
 
     if (isLeftAlign || isMiddle) {
-      left = `${posX}px`;
+      left = `${posX! + 2}px`;
     } else {
-      right = `${posX}px`;
+      right = `${posX! + 2}px`;
     }
 
     origin = "center left";
@@ -115,8 +118,6 @@ export const Popover = () => {
           <ModalBackdrop />
         </>
       )}
-      {/* <Modal />
-      <ModalBackdrop /> */}
     </>
   );
 };

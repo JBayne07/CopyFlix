@@ -25,7 +25,7 @@ export const Home = () => {
 
   return (
     <div className="h-full w-full relative">
-      <div className="h-[41vw] relative z-[1]">
+      <div className="h-[41vw] relative">
         <div className="relative block mt-[-70px] z-0">
           <div className="relative left-0 top-0 right-0 w-full z-0">
             <div className="absolute w-full z-0">
@@ -40,31 +40,27 @@ export const Home = () => {
         </div>
       </div>
 
-      <PopoverProvider>
-        <>
-          <MovieRow
-            title="Continue Watching"
-            movies={movies}
-            className="my-[3vw]"
-          />
-          <MovieRow
-            title="My List"
-            movies={movies}
-            className="mt-[30px] mb-[30px]"
-          />
-          <MovieRow
-            title="Recommended"
-            movies={movies}
-            className="mt-[30px] mb-[30px]"
-          />
-          <MovieRow
-            title="Award Winning"
-            movies={movies}
-            className="mt-[30px] mb-[30px]"
-          />
-          <Popover />
-        </>
-      </PopoverProvider>
+      <MovieRow
+        title="Continue Watching"
+        movies={movies}
+        className="my-[3vw]"
+      />
+      <MovieRow
+        title="My List"
+        movies={movies}
+        className="mt-[30px] mb-[30px]"
+      />
+      <MovieRow
+        title="Recommended"
+        movies={movies}
+        className="mt-[30px] mb-[30px]"
+      />
+      <MovieRow
+        title="Award Winning"
+        movies={movies}
+        className="mt-[30px] mb-[30px]"
+      />
+      {/* <Popover /> */}
     </div>
   );
 };

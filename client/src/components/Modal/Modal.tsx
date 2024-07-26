@@ -1,27 +1,28 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useEffect } from "react";
 import { ModalContent } from "./ModalContent/ModalContent";
 import { ModalPreview } from "./ModalPreview";
 import { PopoverContext } from "@/contexts/PopoverContext";
 
 export const Modal = () => {
-  const { setIsModalOpen } = useContext(PopoverContext);
-  const modalRef = useRef<HTMLDivElement>(null);
+  const { setIsModalOpen, setIsItemHovered } = useContext(PopoverContext);
 
   useEffect(() => {
-    modalRef.current?.focus();
+    setIsItemHovered(false);
   }, []);
 
-  const handleModalBlur = () => {
-    console.log("modal blur");
+  const handleBackDropClick = () => {
     setIsModalOpen(false);
   };
 
   return (
-    <div className="flex items-center justify-center">
+    <div
+      className="fixed top-0 left-0 w-[100vw] h-[100vh] overflow-y-auto z-[5]"
+      onClick={handleBackDropClick}
+    >
+      {/* <div className="flex items-center justify-center"> */}
       <div
-        className="flex flex-col absolute top-[12vh] left-[15vw] bg-background w-[71vw] h-fit z-10"
-        onBlur={handleModalBlur}
-        ref={modalRef}
+        // className="flex flex-col absolute bg-background top-[12vh] left-[15vw] w-[71vw] h-fit z-10 overscroll-contain"
+        className="relative top-[12vh] left-[15vw] flex flex-col bg-background z-10 w-[71vw]"
       >
         <ModalPreview />
         <ModalContent />
@@ -29,3 +30,5 @@ export const Modal = () => {
     </div>
   );
 };
+
+//
