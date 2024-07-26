@@ -17,7 +17,6 @@ export const PopoverContent = (): JSX.Element => {
   const [style, setStyle] = useState<object>({});
 
   const handleMouseOver = () => {
-    console.log(likeIconRef.current?.offsetLeft);
     setStyle({
       left: `${likeIconRef.current?.offsetLeft! - likeIconRef.current?.offsetWidth! - 3 * 4}px`,
     });

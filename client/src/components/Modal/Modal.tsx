@@ -4,8 +4,7 @@ import { ModalPreview } from "./ModalPreview";
 import { PopoverContext } from "@/contexts/PopoverContext";
 
 export const Modal = () => {
-  const { setIsModalOpen, setIsItemHovered, setWindowScroll } =
-    useContext(PopoverContext);
+  const { setIsModalOpen, setIsItemHovered } = useContext(PopoverContext);
 
   useEffect(() => {
     setIsItemHovered(false);
@@ -13,7 +12,6 @@ export const Modal = () => {
 
   const handleBackDropClick = () => {
     setIsModalOpen(false);
-    setWindowScroll(undefined);
   };
 
   return (
