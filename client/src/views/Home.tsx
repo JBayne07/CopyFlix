@@ -6,15 +6,13 @@ import { PopoverContext } from "@/contexts/PopoverContext";
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
-  const { setIsHeaderVisible, setIsHeaderBodyVisible, setIsFooterVisible } =
-    useContext(PopoverContext);
+  const { setIsHeaderVisible, setIsFooterVisible } = useContext(PopoverContext);
 
   useEffect(() => {
     const init = async () => {
       setMovies(await getMovies());
     };
     setIsHeaderVisible(true);
-    setIsHeaderBodyVisible(true);
     setIsFooterVisible(true);
     init();
   }, []);

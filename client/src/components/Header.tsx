@@ -2,11 +2,10 @@ import { Link } from "react-router-dom";
 import { NotificationIcon } from "../assets/NotificationIcon";
 import { ProfileIcon } from "../assets/ProfileIcon";
 import { SearchBar } from "./SearchBar";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NotificationBox } from "./NotificationBox";
 import { ProfileBox } from "./ProfileBox";
 import NetflixIcon from "../assets/Netflix_Logo_RGB.png";
-import { PopoverContext } from "@/contexts/PopoverContext";
 
 interface HeaderProps {
   isHeaderTransparent: boolean;
@@ -19,7 +18,6 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
   const notificationBoxRef = useRef<HTMLDivElement>(null);
   const profileBoxRef = useRef<HTMLDivElement>(null);
   let timeout: NodeJS.Timeout | null;
-  const { isHeaderBodyVisible } = useContext(PopoverContext);
 
   const clearTimer = () => {
     if (timeout) {
@@ -84,7 +82,7 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
   return (
     <div
       className={
-        "h-[70px] px-[40px] flex flex-row w-full sticky top-0 z-[2] " +
+        "h-[70px] px-10 flex flex-row w-full sticky top-0 z-[2] " +
         (isHeaderTransparent ? "bg-transparent" : " bg-primary")
       }
     >
@@ -95,87 +93,67 @@ export const Header = ({ isHeaderTransparent }: HeaderProps) => {
         <img src={NetflixIcon} className="h-12" alt="Netflix" />
       </Link>
 
-      {isHeaderBodyVisible && (
-        <div className="flex flex-row w-full">
-          <div className="flex items-center mr-2">
-            <Link
-              to="/"
-              className="text-sm ml-[18px] text-popout-primary hover:text-accent-foreground"
-            >
-              Home
-            </Link>
-            <Link
-              to="/"
-              className="text-sm ml-[18px] hover:text-accent-foreground"
-            >
-              TV shows
-            </Link>
-            <Link
-              to="movies"
-              className="text-sm ml-[18px] hover:text-accent-foreground"
-            >
-              Movies
-            </Link>
-            <Link
-              to="/"
-              className="text-sm ml-[18px] hover:text-accent-foreground"
-            >
-              New & Popular
-            </Link>
-            <Link
-              to="/"
-              className="text-sm ml-[18px] hover:text-accent-foreground"
-            >
-              My List
-            </Link>
-            <Link
-              to="/"
-              className="text-sm ml-[18px] hover:text-accent-foreground"
-            >
-              Browse by Languages
-            </Link>
-          </div>
+      <div className="flex items-center mr-2">
+        <Link
+          to="/"
+          className="text-sm ml-[18px] text-popout-primary hover:text-accent-foreground"
+        >
+          Home
+        </Link>
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
+          TV shows
+        </Link>
+        <Link
+          to="movies"
+          className="text-sm ml-[18px] hover:text-accent-foreground"
+        >
+          Movies
+        </Link>
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
+          New & Popular
+        </Link>
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
+          My List
+        </Link>
+        <Link to="/" className="text-sm ml-[18px] hover:text-accent-foreground">
+          Browse by Languages
+        </Link>
+      </div>
 
-          <div className="flex items-center ml-auto">
-            <SearchBar />
+      <div className="flex items-center ml-auto">
+        <SearchBar />
 
-            {notificationBoxVisible ? (
-              <NotificationBox
-                handleNotificationIconMouseEnter={
-                  handleNotificationIconMouseEnter
-                }
-                handleNotificationIconMouseLeave={
-                  handleNotificationIconMouseLeave
-                }
-                handleNotificationIconBlur={handleNotificationIconBlur}
-                ref={notificationBoxRef}
-              />
-            ) : (
-              <button
-                onMouseEnter={handleNotificationIconMouseEnter}
-                className="mr-[10px]"
-              >
-                <NotificationIcon className=" size-[24px]" />
-              </button>
-            )}
-            {profileBoxVisible ? (
-              <ProfileBox
-                handleProfileBoxMouseEnter={handleProfileBoxMouseEnter}
-                handleProfileBoxMouseLeave={handleProfileBoxMouseLeave}
-                handleProfileBoxBlur={handleProfileBoxBlur}
-                ref={profileBoxRef}
-              />
-            ) : (
-              <button
-                onMouseEnter={handleProfileBoxMouseEnter}
-                className="mr-[10px]"
-              >
-                <ProfileIcon className=" size-[24px]" />
-              </button>
-            )}
-          </div>
-        </div>
-      )}
+        {notificationBoxVisible ? (
+          <NotificationBox
+            handleNotificationIconMouseEnter={handleNotificationIconMouseEnter}
+            handleNotificationIconMouseLeave={handleNotificationIconMouseLeave}
+            handleNotificationIconBlur={handleNotificationIconBlur}
+            ref={notificationBoxRef}
+          />
+        ) : (
+          <button
+            onMouseEnter={handleNotificationIconMouseEnter}
+            className="mr-[10px]"
+          >
+            <NotificationIcon className=" size-[24px]" />
+          </button>
+        )}
+        {profileBoxVisible ? (
+          <ProfileBox
+            handleProfileBoxMouseEnter={handleProfileBoxMouseEnter}
+            handleProfileBoxMouseLeave={handleProfileBoxMouseLeave}
+            handleProfileBoxBlur={handleProfileBoxBlur}
+            ref={profileBoxRef}
+          />
+        ) : (
+          <button
+            onMouseEnter={handleProfileBoxMouseEnter}
+            className="mr-[10px]"
+          >
+            <ProfileIcon className=" size-[24px]" />
+          </button>
+        )}
+      </div>
     </div>
   );
 };
