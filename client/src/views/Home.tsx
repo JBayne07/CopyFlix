@@ -1,24 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MovieRow } from "../components/MovieRow";
 import { Movie } from "../services/types";
+import { getMovies } from "@/services/MovieService";
+import { PopoverContext } from "@/contexts/PopoverContext";
 
 export const Home = () => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const { setIsHeaderVisible, setIsHeaderBodyVisible, setIsFooterVisible } =
+    useContext(PopoverContext);
 
   useEffect(() => {
-    const url = "http://localhost:8000/movies";
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        setMovies(data);
-      });
+    const init = async () => {
+      setMovies(await getMovies());
+    };
+    setIsHeaderVisible(true);
+    setIsHeaderBodyVisible(true);
+    setIsFooterVisible(true);
+    init();
   }, []);
 
   return (

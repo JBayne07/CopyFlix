@@ -20,6 +20,12 @@ interface PopoverContextType {
   setIsModalOpen: Dispatch<SetStateAction<boolean | undefined>>;
   windowScroll?: number;
   setWindowScroll: Dispatch<SetStateAction<number | undefined>>;
+  isHeaderVisible?: boolean;
+  setIsHeaderVisible: Dispatch<SetStateAction<boolean | undefined>>;
+  isHeaderBodyVisible?: boolean;
+  setIsHeaderBodyVisible: Dispatch<SetStateAction<boolean | undefined>>;
+  isFooterVisible?: boolean;
+  setIsFooterVisible: Dispatch<SetStateAction<boolean | undefined>>;
 }
 
 interface PopoverContentProps {
@@ -36,6 +42,9 @@ export const PopoverContext = createContext<PopoverContextType>({
   setItemWidth: () => undefined,
   setIsModalOpen: () => undefined,
   setWindowScroll: () => undefined,
+  setIsHeaderVisible: () => undefined,
+  setIsHeaderBodyVisible: () => undefined,
+  setIsFooterVisible: () => undefined,
 });
 
 export const PopoverProvider = ({ children }: PopoverContentProps) => {
@@ -48,6 +57,9 @@ export const PopoverProvider = ({ children }: PopoverContentProps) => {
   const [itemWidth, setItemWidth] = useState<number>();
   const [isModalOpen, setIsModalOpen] = useState<boolean>();
   const [windowScroll, setWindowScroll] = useState<number>();
+  const [isHeaderVisible, setIsHeaderVisible] = useState<boolean>();
+  const [isHeaderBodyVisible, setIsHeaderBodyVisible] = useState<boolean>();
+  const [isFooterVisible, setIsFooterVisible] = useState<boolean>();
 
   return (
     <PopoverContext.Provider
@@ -70,6 +82,12 @@ export const PopoverProvider = ({ children }: PopoverContentProps) => {
         setIsModalOpen,
         windowScroll,
         setWindowScroll,
+        isHeaderVisible,
+        setIsHeaderVisible,
+        isHeaderBodyVisible,
+        setIsHeaderBodyVisible,
+        isFooterVisible,
+        setIsFooterVisible,
       }}
     >
       {children}

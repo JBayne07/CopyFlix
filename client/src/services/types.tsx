@@ -4,5 +4,6 @@ export interface Movie {
   Genres: string[];
   Keywords: string[];
   ReleaseYr: string;
-  Src: string;
+  ImgSrc: string;
+  VideoSrc: string;
 }

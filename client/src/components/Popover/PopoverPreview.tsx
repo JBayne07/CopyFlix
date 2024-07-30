@@ -7,7 +7,7 @@ export const PopoverPreview = (): JSX.Element => {
   return (
     <div className="rounded">
       <Link to="/watch" className="cursor-default">
-        <img className="w-[100%] aspect-video" src={movie?.Src} alt="" />
+        <img className="w-[100%] aspect-video" src={movie?.ImgSrc} alt="" />
       </Link>
     </div>
   );

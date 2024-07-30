@@ -6,12 +6,16 @@ import { Outlet } from "react-router-dom";
 
 export const MainWindowLayout = () => {
   const [isHeaderTransparent, setIsHeaderTransparent] = useState(true);
-  const { isModalOpen, windowScroll, setWindowScroll } =
-    useContext(PopoverContext);
+  const {
+    isModalOpen,
+    isHeaderVisible,
+    windowScroll,
+    setWindowScroll,
+    isFooterVisible,
+  } = useContext(PopoverContext);
   const [style, setStyle] = useState<object>({});
 
   useEffect(() => {
-    console.log("hello");
     if (isModalOpen) {
       window.removeEventListener("scroll", scrollEvent);
       setStyle({ top: `-${windowScroll}px` });
@@ -32,12 +36,12 @@ export const MainWindowLayout = () => {
 
   return (
     <div
-      className={`min-h-screen mt-[-70px] ${isModalOpen ? "fixed" : "static"}`}
+      className={` ${isHeaderVisible && "mt-[-70px]"} ${isModalOpen ? "fixed" : "static"}`}
       style={style}
     >
-      <Header isHeaderTransparent={isHeaderTransparent} />
+      {isHeaderVisible && <Header isHeaderTransparent={isHeaderTransparent} />}
       <Outlet />
-      <Footer />
+      {isFooterVisible && <Footer />}
     </div>
   );
 };

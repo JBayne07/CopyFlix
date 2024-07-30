@@ -9,6 +9,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { Watch } from "./views/Watch";
+import { PageNotFound } from "./views/PageNotFound";
 
 export const AppRouter = () => {
   const router = createBrowserRouter(
@@ -17,6 +18,7 @@ export const AppRouter = () => {
         <Route path="/" element={<Home />} />
         <Route path="movies" element={<Movies />} />
         <Route path="watch" element={<Watch />} />
+        <Route path="*" element={<PageNotFound />} />
       </Route>
     )
   );

@@ -74,7 +74,7 @@ export const SliderItem = ({
       {movie && (
         <img
           className="w-full aspect-video rounded-sm"
-          src={movie.Src}
+          src={movie.ImgSrc}
           alt=""
         />
       )}
